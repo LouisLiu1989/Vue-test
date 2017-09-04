@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charest="utf-8">
+    <title>Lady</title>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"> -->
+    <!-- <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+
+    <script src="venders.bundle.js"></script>
+  </head>
+  <body>
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input class="new-todo"
+        autofocus autocomplete="off"
+        placeholder="What needs to be done?"
+        v-model="newTodo"
+        @keyup.enter="addTodo">
+    </header>
+    <section class="main" v-show="todos.length" v-cloak>
+      <input class="toggle-all" type="checkbox" v-model="allDone">
+      <ul class="todo-list">
+        <li v-for="todo in filteredTodos"
+          class="todo"
+          :key="todo.id"
+          :class="{ completed: todo.completed, editing: todo == editedTodo }">
+          <div class="view">
+            <input class="toggle" type="checkbox" v-model="todo.completed">
+            <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+            <button class="destroy" @click="removeTodo(todo)"></button>
+          </div>
+          <input class="edit" type="text"
+            v-model="todo.title"
+            v-todo-focus="todo == editedTodo"
+            @blur="doneEdit(todo)"
+            @keyup.enter="doneEdit(todo)"
+            @keyup.esc="cancelEdit(todo)">
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+      <span class="todo-count">
+        <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
+      </span>
+      <ul class="filters">
+        <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
+        <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
+        <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
+      </ul>
+      <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        Clear completed
+      </button>
+    </footer>
+  </section>
+  <footer class="info">
+    <p>Double-click to edit a todo</p>
+    <p>Written by <a href="http://evanyou.me">Evan You</a></p>
+    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  </footer>
+    <!-- <nav>
+      <div id="navbar">
+        <navbar></navbar>
+      </div>    
+    </nav>
+    <div class="clearfix"></div>
+  
+
+    <main>
+      <div class="container">
+        <sandbox></sandbox>
+      </div>
+    </main> 
+    <div class="clearfix"></div> -->
+  
+    <main>   
+  
+      <!-- <h2>vfor</h2>
+      <div class="vfor">
+        <vfor></vfor>
+      </div> -->
+      
+     <!--  <h2>checkbx</h2>
+      <div class="checkbx">
+        <checkbox></checkbox>
+      </div>
+      
+      <h2>radio</h2>
+      <div class="radio">
+        <radio></radio>
+      </div>
+
+      <h2>Selected</h2>
+      <div class="Selected">
+        <Selected></Selected>
+      </div> -->
+    </main>
+
+
+
+   
+  </body>
+</html>
+ <script src="main.bundle.js"></script>
+ <script src="https://unpkg.com/vue"></script>
